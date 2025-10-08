@@ -2,26 +2,30 @@ import { useEffect, useState, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useNavigate } from "react-router-dom";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 export default function Movies() {
+  const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
   const [selected, setSelected] = useState(null);
   const [index, setIndex] = useState(0);
   const intervalRef = useRef(null);
   const container = useRef(null);
+  const [auth,setAuth] = useState(false);
 
+  
   useGSAP(() => {
     if (!container.current) return;
 
     let ctx = gsap.context(() => {
       gsap.from(container.current, {
         opacity: 0,
-        x:20,
+        x: 100,
         duration: 0.3,
       });
     });
-    return ()=>ctx.revert();
+    return () => ctx.revert();
   }, [index]);
 
   useEffect(() => {
@@ -82,8 +86,8 @@ export default function Movies() {
             <ChevronLeft className="text-white" size={30} />
           </div>
 
-          <div className="absolute w-full h-screen bg-gradient-to-t from-black to-transparent" />
-          <div className="absolute w-full h-screen bg-gradient-to-b from-black/60 to-transparent" />
+          <div className="absolute w-full h-screen bg-gradient-to-t from-black/80 to-transparent" />
+          <div className="absolute w-full h-screen bg-gradient-to-b from-black/40 to-transparent" />
 
           <img
             className="w-full h-full object-cover"
@@ -98,7 +102,9 @@ export default function Movies() {
               alt={selected.title}
             />
             <div>
-              <h1 className="mt-10 md:mt-0 text-4xl lg:text-6xl mb-10 font-bold">{selected.title}</h1>
+              <h1 className="mt-10 md:mt-0 text-4xl lg:text-6xl mb-10 font-bold">
+                {selected.title}
+              </h1>
               <p className="hidden md:block text-gray-300 w-[40vw] mb-10">
                 {selected.overview}
               </p>
