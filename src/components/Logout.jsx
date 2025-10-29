@@ -24,6 +24,6 @@ export default function Logout() {
         }
     }
   return (
-    <button onClick={handleClick} className={`hover:bg-gray-300 hover:text-black transition-all duration-400 cursor-pointer font-['poppins'] text-white py-2 px-4 border-2 rounded-full`}>Logout</button>
+    <button onClick={handleClick} className={`hover:bg-gray-300 hover:text-black transition-all duration-400 cursor-pointer font-['poppins'] text-white py-2 px-4 border-2 rounded-full inline-block`}>Logout</button>
   )
 }
